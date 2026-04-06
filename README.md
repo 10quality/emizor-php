@@ -26,13 +26,13 @@ composer install
 Or install the package in another project:
 
 ```bash
-composer require emizor/emizor-php-sdk
+composer require 10quality/emizor-php-sdk
 ```
 
 ## Environment Variables
 
 ```dotenv
-EMIZOR_BASE_URL=https://felapp2.emizor.com
+EMIZOR_BASE_URL=https://{your-env}.emizor.com
 EMIZOR_API_TOKEN=your-api-token
 EMIZOR_API_SECRET=password
 ```
