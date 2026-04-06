@@ -1,7 +1,7 @@
 # Emizor PHP SDK
 
 [![Latest Stable Version](https://poser.pugx.org/10quality/emizor-php/v/stable)](https://packagist.org/packages/10quality/emizor-php)
-![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/10quality/emizor-php/php.yml)
+![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/10quality/emizor-php/ci.yml)
 [![Total Downloads](https://poser.pugx.org/10quality/emizor-php/downloads)](https://packagist.org/packages/10quality/emizor-php)
 [![License](https://poser.pugx.org/10quality/emizor-php/license)](https://packagist.org/packages/10quality/emizor-php)
 
