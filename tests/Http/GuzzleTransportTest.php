@@ -19,10 +19,11 @@ final class GuzzleTransportTest extends TestCase
 {
     public function test_it_sends_get_requests(): void
     {
+        $payload = json_encode(['success' => true], JSON_THROW_ON_ERROR);
         $transport = new GuzzleTransport(
             new Config('https://felapp2.emizor.com', 'token', 'secret'),
             $this->clientFromMock(new MockHandler([
-                new Response(200, [], json_encode(['success' => true])),
+                new Response(200, [], $payload),
             ])),
         );
 
@@ -33,10 +34,11 @@ final class GuzzleTransportTest extends TestCase
 
     public function test_it_sends_post_requests(): void
     {
+        $payload = json_encode(['data' => ['id' => 'abc']], JSON_THROW_ON_ERROR);
         $transport = new GuzzleTransport(
             new Config('https://felapp2.emizor.com', 'token', 'secret'),
             $this->clientFromMock(new MockHandler([
-                new Response(200, [], json_encode(['data' => ['id' => 'abc']])),
+                new Response(200, [], $payload),
             ])),
         );
 

@@ -64,7 +64,7 @@ Para consumir los servicios es necesario contar con un `X-Api-Token`.
 ### Base URL (desarrollo)
 
 ```
-https://felapp2.emizor.com
+https://{your-env}.emizor.com
 ```
 
 ---
@@ -404,7 +404,7 @@ Obtiene el catálogo de productos disponibles.
 
 ---
 
-**Base URL de desarrollo:** `https://felapp2.emizor.com`
+**Base URL de desarrollo:** `https://{your-env}.emizor.com`
 
 **Versión de la documentación:** 1.0 (24/02/2025)
 ```

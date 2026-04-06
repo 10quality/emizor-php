@@ -2,6 +2,10 @@
 
 The Emizor PHP SDK provides a focused, injectable client for the Emizor 5 REST API documented in the official API reference.
 
+## Minimum PHP Version
+
+This SDK requires PHP `^8.2`.
+
 ## Features
 
 * Guzzle-based HTTP transport.
@@ -9,6 +13,7 @@ The Emizor PHP SDK provides a focused, injectable client for the Emizor 5 REST A
 * Dedicated resources for clients, invoices, products, and tax verification flows.
 * Enum support for documented constant values.
 * PHPUnit test suite with full source coverage.
+* PHPStan static analysis for code quality checks.
 
 ## Installation
 
@@ -77,11 +82,27 @@ The SDK includes enum classes for values explicitly documented by Emizor:
 * `Emizor\Enums\CurrencyCode`
 * `Emizor\Enums\SectorDocumentType`
 
+## Endpoint Coverage
+
+The SDK documentation and samples cover every endpoint described in the bundled Emizor 5 API reference:
+
+* Verify NIT
+* Create client
+* Create invoice
+* Create prefactura
+* Generate QR for prefactura
+* Emit prefactura
+* Check invoice status
+* List products
+
+See [docs/endpoints.md](endpoints.md) for endpoint-by-endpoint payload guidance and examples.
+
 ## Usage Samples
 
 See the sample scripts:
 
 * [docs/samples/basic-usage.php](samples/basic-usage.php)
+* [docs/samples/all-endpoints.php](samples/all-endpoints.php)
 
 ## Testing
 
@@ -95,4 +116,10 @@ Run coverage:
 
 ```bash
 composer test:coverage
+```
+
+Run static analysis:
+
+```bash
+composer analyse
 ```
