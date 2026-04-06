@@ -25,7 +25,7 @@ composer install
 Or install the package in another project:
 
 ```bash
-composer require 10quality/emizor-php-sdk
+composer require 10quality/emizor-php
 ```
 
 ## Environment Variables
