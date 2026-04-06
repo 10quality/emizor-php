@@ -1,9 +1,9 @@
 # Emizor PHP SDK
 
-[![Latest Stable Version](https://poser.pugx.org/10quality/emizor-php/v/stable)](https://packagist.org/packages/10quality/emizor-php)
+[![Latest Stable Version](https://poser.pugx.org/10quality/emizor-php-sdk/v/stable)](https://packagist.org/packages/10quality/emizor-php-sdk)
 ![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/10quality/emizor-php/ci.yml)
-[![Total Downloads](https://poser.pugx.org/10quality/emizor-php/downloads)](https://packagist.org/packages/10quality/emizor-php)
-[![License](https://poser.pugx.org/10quality/emizor-php/license)](https://packagist.org/packages/10quality/emizor-php)
+[![Total Downloads](https://poser.pugx.org/10quality/emizor-php-sdk/downloads)](https://packagist.org/packages/10quality/emizor-php-sdk)
+[![License](https://poser.pugx.org/10quality/emizor-php-sdk/license)](https://packagist.org/packages/10quality/emizor-php-sdk)
 
 PHP SDK for the Emizor 5 REST API with Guzzle transport, `.env` support, PHPUnit coverage, and static analysis.
 
@@ -30,7 +30,7 @@ composer install
 Or install the package in another project:
 
 ```bash
-composer require 10quality/emizor-php
+composer require 10quality/emizor-php-sdk
 ```
 
 ## Environment Variables
