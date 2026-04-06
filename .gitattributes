@@ -1,0 +1,8 @@
+/.agents export-ignore
+/.github export-ignore
+/tests export-ignore
+/prompt.md export-ignore
+/phpunit.xml export-ignore
+/phpstan.neon export-ignore
+/.env.example export-ignore
+/.gitignore export-ignore

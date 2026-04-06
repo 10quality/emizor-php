@@ -22,6 +22,18 @@
             "Emizor\\Tests\\": "tests/"
         }
     },
+    "archive": {
+        "exclude": [
+            "/.agents",
+            "/.github",
+            "/tests",
+            "/prompt.md",
+            "/phpunit.xml",
+            "/phpstan.neon",
+            "/.env.example",
+            "/.gitignore"
+        ]
+    },
     "scripts": {
         "analyse": "phpstan analyse --configuration phpstan.neon",
         "test": "phpunit --configuration phpunit.xml",
