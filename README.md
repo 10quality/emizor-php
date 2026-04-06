@@ -15,7 +15,6 @@ PHP SDK for the Emizor 5 REST API with Guzzle transport, `.env` support, PHPUnit
 * Coverage for all endpoints documented in the bundled Emizor 5 REST API reference.
 * Enum support for documented API constants such as document and payment types.
 * PHPUnit and PHPStan integration for testing and code quality.
-* GitHub Actions workflow for pushes to `main` and pull requests.
 
 ## Installation
 

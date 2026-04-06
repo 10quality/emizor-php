@@ -1,5 +1,6 @@
 # Generated
 /vendor
+/.phpunit.result.cache
 
 # IDEA
 prompt.md
