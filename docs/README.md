@@ -32,7 +32,7 @@ composer install
 Create a `.env` file in your project root:
 
 ```dotenv
-EMIZOR_BASE_URL=https://felapp2.emizor.com
+EMIZOR_BASE_URL=https://{your-env}}.emizor.com
 EMIZOR_API_TOKEN=your-api-token
 EMIZOR_API_SECRET=password
 ```
