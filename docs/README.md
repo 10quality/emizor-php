@@ -82,6 +82,16 @@ The SDK includes enum classes for values explicitly documented by Emizor:
 * `Emizor\Enums\CurrencyCode`
 * `Emizor\Enums\SectorDocumentType`
 
+### Document Type Values
+
+| Emizor code | Enum case | Description |
+|-------------|-----------|-------------|
+| `1` | `DocumentType::CI` | Cedula de identidad |
+| `2` | `DocumentType::CEX` | Cedula de identidad de extranjero |
+| `3` | `DocumentType::PAS` | Pasaporte |
+| `4` | `DocumentType::OD` | Otro documento de identidad |
+| `5` | `DocumentType::NIT` | Numero de identificacion tributaria |
+
 ## Endpoint Coverage
 
 The SDK documentation and samples cover every endpoint described in the bundled Emizor 5 API reference:

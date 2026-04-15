@@ -15,6 +15,9 @@ final class EnumsTest extends TestCase
     public function test_document_type_enum_values(): void
     {
         self::assertSame('1', DocumentType::CI->value);
+        self::assertSame('2', DocumentType::CEX->value);
+        self::assertSame('3', DocumentType::PAS->value);
+        self::assertSame('4', DocumentType::OD->value);
         self::assertSame('5', DocumentType::NIT->value);
     }
 

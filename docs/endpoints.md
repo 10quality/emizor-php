@@ -32,6 +32,16 @@ The API returns a `success` flag that can be used to derive `codigoExcepcion` fo
 
 Endpoint: `POST /api/v1/clients`
 
+Supported `felData.type_document_id` values are available through `DocumentType`:
+
+| Emizor code | Enum case | Description |
+|-------------|-----------|-------------|
+| `1` | `DocumentType::CI` | Cedula de identidad |
+| `2` | `DocumentType::CEX` | Cedula de identidad de extranjero |
+| `3` | `DocumentType::PAS` | Pasaporte |
+| `4` | `DocumentType::OD` | Otro documento de identidad |
+| `5` | `DocumentType::NIT` | Numero de identificacion tributaria |
+
 ```php
 use Emizor\Enums\DocumentType;
 
