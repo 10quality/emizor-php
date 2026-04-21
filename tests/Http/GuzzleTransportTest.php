@@ -47,6 +47,36 @@ final class GuzzleTransportTest extends TestCase
         self::assertSame(['data' => ['id' => 'abc']], $response);
     }
 
+    public function test_it_sends_put_requests(): void
+    {
+        $payload = json_encode(['data' => ['id' => 'abc']], JSON_THROW_ON_ERROR);
+        $transport = new GuzzleTransport(
+            new Config('https://felapp2.emizor.com', 'token', 'secret'),
+            $this->clientFromMock(new MockHandler([
+                new Response(200, [], $payload),
+            ])),
+        );
+
+        $response = $transport->put('/api/v1/products/abc', ['product_key' => 'Updated']);
+
+        self::assertSame(['data' => ['id' => 'abc']], $response);
+    }
+
+    public function test_it_sends_delete_requests(): void
+    {
+        $payload = json_encode(['data' => ['is_deleted' => true]], JSON_THROW_ON_ERROR);
+        $transport = new GuzzleTransport(
+            new Config('https://felapp2.emizor.com', 'token', 'secret'),
+            $this->clientFromMock(new MockHandler([
+                new Response(200, [], $payload),
+            ])),
+        );
+
+        $response = $transport->delete('/api/v1/products/abc');
+
+        self::assertSame(['data' => ['is_deleted' => true]], $response);
+    }
+
     public function test_it_returns_an_empty_array_for_empty_bodies(): void
     {
         $transport = new GuzzleTransport(

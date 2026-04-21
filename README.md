@@ -17,7 +17,7 @@ PHP SDK for the Emizor 5 REST API with Guzzle transport, `.env` support, PHPUnit
 * Injectable SDK client under the `Emizor` namespace.
 * Guzzle-based HTTP transport with Emizor authentication headers.
 * Environment-backed configuration via `EMIZOR_*` variables.
-* Coverage for all endpoints documented in the bundled Emizor 5 REST API reference.
+* Coverage for all endpoints documented in the bundled Emizor 5 REST API reference, including product management and parametric catalogs.
 * Enum support for documented API constants such as document and payment types.
 * PHPUnit and PHPStan integration for testing and code quality.
 
@@ -69,6 +69,10 @@ print_r($products);
 * Emit prefactura: `invoices()->emitPrefactura(string $originId)`
 * Check invoice status: `invoices()->status(string $originId)`
 * List products: `products()->list(int $page = 1, string $filter = '')`
+* Create product: `products()->create(array $payload)`
+* Update product: `products()->update(string $productId, array $payload)`
+* Delete product: `products()->delete(string $productId)`
+* List parametrica catalog: `parametricas()->list(string $parametrica)`
 
 ## Docs
 

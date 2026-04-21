@@ -56,4 +56,37 @@ final class FakeTransport implements TransportInterface
 
         return $this->response;
     }
+
+    /**
+     * @param array<string, mixed> $payload
+     * @param array<string, mixed> $query
+     * @return array<string, mixed>
+     */
+    public function put(string $uri, array $payload = [], array $query = []): array
+    {
+        $this->requests[] = [
+            'method' => 'PUT',
+            'uri' => $uri,
+            'payload' => $payload,
+            'query' => $query,
+        ];
+
+        return $this->response;
+    }
+
+    /**
+     * @param array<string, mixed> $query
+     * @return array<string, mixed>
+     */
+    public function delete(string $uri, array $query = []): array
+    {
+        $this->requests[] = [
+            'method' => 'DELETE',
+            'uri' => $uri,
+            'payload' => [],
+            'query' => $query,
+        ];
+
+        return $this->response;
+    }
 }

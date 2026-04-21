@@ -8,6 +8,7 @@ use Emizor\Config;
 use Emizor\Emizor;
 use Emizor\Resources\ClientsResource;
 use Emizor\Resources\InvoicesResource;
+use Emizor\Resources\ParametricasResource;
 use Emizor\Resources\ProductsResource;
 use Emizor\Tests\Support\FakeTransport;
 use PHPUnit\Framework\TestCase;
@@ -38,6 +39,7 @@ final class EmizorTest extends TestCase
 
         self::assertInstanceOf(ClientsResource::class, $sdk->clients());
         self::assertInstanceOf(InvoicesResource::class, $sdk->invoices());
+        self::assertInstanceOf(ParametricasResource::class, $sdk->parametricas());
         self::assertInstanceOf(ProductsResource::class, $sdk->products());
     }
 

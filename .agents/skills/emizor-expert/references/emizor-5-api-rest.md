@@ -1,33 +1,39 @@
 # Documentación Técnica – API REST Emizor 5
 
-## INFORMACIÓN
+**INFORMACIÓN**
 
-| NOMBRE              | CARGO                  | Versión | FECHA      |
-|---------------------|------------------------|---------|------------|
-| Denis Silisqui A.   | Responsable de Desarrollo | 1.0     | 24/02/2025 |
+| NOMBRE          | CARGO                  | Versión | FECHA      |
+|-----------------|------------------------|---------|------------|
+| ELABORADO POR: | Denis Silisqui A.     | 1.2     | 24/02/2025 |
+
+**Responsable de Desarrollo**
 
 ---
 
 ## Contenido
 
-- [Introducción](#introducción)
-- [Autenticación](#autenticación)
-- [Obtención del token](#obtención-del-token)
-- [Headers requeridos](#headers-requeridos)
-- [Base URL (desarrollo)](#base-url-desarrollo)
-- [Endpoints](#endpoints)
-  - [1. Verificar NIT](#1-verificar-nit)
-  - [2. Crear Cliente](#2-crear-cliente)
-  - [3. Emitir Factura o Prefactura](#3-emitir-factura-o-prefactura)
-  - [4. Generar QR para Prefactura](#4-generar-qr-para-prefactura)
-  - [5. Emitir Prefactura](#5-emitir-prefactura)
-  - [6. Consultar Estado de Factura](#6-consultar-estado-de-factura)
-  - [7. Listar Productos](#7-listar-productos)
-- [Flujo de Integración](#flujo-de-integración)
-  - [Caso 1: Emisión directa de factura](#caso-1-emisión-directa-de-factura)
-  - [Caso 2: Factura con QR](#caso-2-factura-con-qr)
-- [Códigos de Estado Comunes](#códigos-de-estado-comunes)
-- [Notas Adicionales](#notas-adicionales)
+- [Introducción](#introducción) ................................................ 3
+- [Autenticación](#autenticación) ............................................. 3
+  - [Obtención del token](#obtención-del-token) ....................... 3
+  - [Headers requeridos](#headers-requeridos) ........................... 3
+- [Base URL (desarrollo)](#base-url-desarrollo) ....................... 3
+- [Endpoints](#endpoints) ...................................................... 4
+  1. [Verificar NIT](#1-verificar-nit) ..................................... 4
+  2. [Crear Cliente](#2-crear-cliente) ..................................... 4
+  3. [Emitir Factura o Prefactura](#3-emitir-factura-o-prefactura) ..... 6
+  4. [Generar QR para Prefactura](#4-generar-qr-para-prefactura) ...... 12
+  5. [Emitir Prefactura](#5-emitir-prefactura) .......................... 13
+  6. [Consultar Estado de Factura](#6-consultar-estado-de-factura) .... 14
+  7. [Listar Productos](#7-listar-productos) ............................ 14
+- [Flujo de Integración](#flujo-de-integración) .......................... 15
+  - [Caso 1: Emisión directa de factura](#caso-1-emisión-directa-de-factura) ... 15
+  - [Caso 2: Factura con QR](#caso-2-factura-con-qr) ................... 15
+- [Códigos de Estado Comunes](#códigos-de-estado-comunes) ............. 16
+- [Notas Adicionales](#notas-adicionales) .................................. 16
+- [8. Crear Productos](#8-crear-productos) ............................... 17
+- [9. Actualizar Productos](#9-actualizar-productos) .................... 18
+- [10. Eliminar Productos](#10-eliminar-productos) ...................... 19
+- [11. Listar Paramétricas](#11-listar-paramétricas) .................... 20
 
 ---
 
@@ -37,16 +43,14 @@ Esta documentación describe los servicios disponibles en la **API REST de Emizo
 
 La API permite la creación de clientes, emisión de facturas, generación de códigos QR y consulta de estados ante el SIN (Servicio de Impuestos Nacionales).
 
----
-
 ## Autenticación
 
-Para consumir los servicios es necesario contar con un `X-Api-Token`.
+Para consumir los servicios, es necesario contar con un `X-Api-Token`.
 
 ### Obtención del token
 
 1. Ingresa a la plataforma Emizor con tu usuario y contraseña.
-2. Dirígete a: **Configuración → Gestión de cuentas → Integraciones → API Tokens**
+2. Dirígete a: **Configuración → Gestión de cuentas → Integraciones → API Tokens**.
 3. Crea un nuevo token asignándole un nombre.
 4. Al guardar, se te solicitará la contraseña de tu usuario.
 5. Una vez registrado, copia el token generado.
@@ -64,7 +68,7 @@ Para consumir los servicios es necesario contar con un `X-Api-Token`.
 ### Base URL (desarrollo)
 
 ```
-https://{your-env}.emizor.com
+https://{env}.emizor.com
 ```
 
 ---
@@ -81,7 +85,7 @@ Valida si un NIT existe ante el SIN. Se usa para determinar el valor del campo `
 
 | Parámetro | Tipo   | Descripción                  |
 |-----------|--------|------------------------------|
-| `nit`     | string | NIT del cliente a verificar  |
+| `nit`     | string | NIT del cliente a verificar |
 
 **Respuesta exitosa (NIT activo)**
 
@@ -103,7 +107,7 @@ Valida si un NIT existe ante el SIN. Se usa para determinar el valor del campo `
 }
 ```
 
-> **Nota:** Si `success` es `true`, el `codigoExcepcion` debe ser `0`; en caso contrario, debe ser `1`.
+**Nota:** Si `success` es `true`, el `codigoExcepcion` debe ser `0`; en caso contrario, debe ser `1`.
 
 ---
 
@@ -156,21 +160,47 @@ Registra un cliente en la plataforma. Es necesario para asociar facturas.
 }
 ```
 
-**Ejemplo de respuesta** (parcial)
+**Ejemplo de respuesta**
 
 ```json
 {
   "data": {
     "id": "9wdLgGRDbj",
+    "user_id": "WjnegPGawZ",
     "name": "Denis",
+    "private_notes": "",
+    "public_notes": "",
+    "client_hash": "EFkkOK5m8NKllJQaQeHbvSO277Bq8wRc044HFQaf",
+    "address1": "",
     "phone": "71558926",
+    "is_deleted": false,
+    "updated_at": 1774452419,
+    "archived_at": 0,
+    "created_at": 1774452419,
+    "display_name": "Denis",
     "number": "6638075",
     "felData": {
+      "company_id": "l4zbqLyapr",
       "type_document_id": "1",
-      "business_name": "Silisqui",
-      "document_number": "6638075"
+      "document_number": "6638075",
+      "complement": null,
+      "business_name": "Silisqui"
     },
-    "contacts": [ ... ]
+    "contacts": [
+      {
+        "id": "w9aAnKlpbv",
+        "first_name": "denis",
+        "last_name": "silisqui aramayo",
+        "email": "denis@vendisqr.com",
+        "created_at": 1774452419,
+        "updated_at": 1774452419,
+        "archived_at": 0,
+        "phone": "6638075",
+        "contact_key": "iz6CZzWIUW5sEYmoQmw5Myy9LAefOA1ewGM6XcJB",
+        "send_email": true,
+        "link": "https://felapp.emizor.com/client/key_login/iz6CZzWIUW5sEYmoQmw5Myy9LAefOA1ewGM6XcJB"
+      }
+    ]
   }
 }
 ```
@@ -181,40 +211,51 @@ Registra un cliente en la plataforma. Es necesario para asociar facturas.
 
 **POST** `/api/v1/invoices?should_emit=true&paid=false&send_mail=true`
 
-**Parámetros de consulta**
+**Parámetros de query**
 
-| Parámetro     | Descripción                          |
-|---------------|--------------------------------------|
+| Parámetro     | Descripción                              |
+|---------------|------------------------------------------|
 | `should_emit` | `true` = emisión directa, `false` = prefactura |
-| `paid`        | Indica si está pagada                |
-| `send_mail`   | Enviar factura por correo            |
+| `paid`        | Indica si está pagada                    |
+| `send_mail`   | Enviar factura por correo                |
 
 **Campos clave en el body**
 
-| Campo                          | Descripción                                      |
-|--------------------------------|--------------------------------------------------|
-| `client_id`                    | ID del cliente obtenido en la creación           |
-| `line_items[].product_id`      | ID del producto (obtenido vía API de productos)  |
-| `felData.codigoMetodoPago`     | `5` = Efectivo, `86` = Mixto                     |
-| `felData.codigoExcepcion`      | `0` (NIT válido) o `1` (NIT inválido)           |
-| `felData.numeroDocumento`      | NIT o CI del cliente                             |
-| `felData.montoTotal`           | Total de la factura                              |
-| `felData.montoTotalSujetoIva`  | Monto sujeto a IVA                               |
+| Campo                        | Descripción                                      |
+|------------------------------|--------------------------------------------------|
+| `client_id`                  | ID del cliente obtenido en la creación           |
+| `line_items[].product_id`    | ID del producto (obtenido vía API de productos)  |
+| `felData.codigoMetodoPago`   | `5` = Efectivo, `86` = Mixto                     |
+| `felData.codigoExcepcion`    | `0` (NIT válido) o `1` (NIT inválido)           |
+| `felData.numeroDocumento`    | NIT o CI del cliente                             |
+| `felData.montoTotal`         | Total de la factura                              |
+| `felData.montoTotalSujetoIva`| Monto sujeto a IVA                               |
 
-> **Importante:** Para el método de pago `86` (mixto), se requiere enviar `numeroTarjeta` y `montoGiftCard`.
+**Importante:** Para el método de pago `86` (mixto), se requiere enviar `numeroTarjeta` y `montoGiftCard`. Este último reduce el monto sujeto a IVA.
 
 **Ejemplo de envío (método mixto)**
 
 ```json
 {
   "client_id": "9wdLgGRDbj",
+  "number": "",
+  "due_date": "",
+  "terms": "",
+  "public_notes": "",
+  "private_notes": "",
+  "is_amount_discount": true,
   "line_items": [
     {
       "quantity": 1,
       "cost": 1,
       "product_key": "PAGO OTROS SERVICIOS",
+      "product_cost": 0,
+      "notes": "PAGO OTROS SERVICIOS",
+      "discount": 0,
+      "is_amount_discount": true,
       "product_id": "olejV2BejN",
-      "notes": "PAGO OTROS SERVICIOS"
+      "imei": "",
+      "numeroSerie": ""
     }
   ],
   "entity_type": "invoice",
@@ -224,11 +265,17 @@ Registra un cliente en la plataforma. Es necesario para asociar facturas.
     "sector_document_type_id": "1",
     "tipoCambio": 1,
     "facturaTicket": "34d48f02-a10b-489f-b991-c6a73864ac60",
+    "extras": {
+      "otros": "informacion extra"
+    },
     "codigo_sucursal": "0",
+    "codigoPuntoVenta": null,
     "descuentoAdicional": 0.02,
     "montoTotal": 0.98,
+    "montoTotalMoneda": 0.98,
     "montoTotalSujetoIva": 0.48,
     "codigoTipoDocumentoIdentidad": "5",
+    "complemento": "",
     "numeroDocumento": "2342342",
     "nombreRazonSocial": "marcus",
     "codigoExcepcion": 1,
@@ -238,18 +285,7 @@ Registra un cliente en la plataforma. Es necesario para asociar facturas.
 }
 ```
 
-**Ejemplo de respuesta** (exitosa)
-
-```json
-{
-  "data": {
-    "id": "X7axVgvldy",
-    "cuf": "19F6D082E4891AA0524E7D52CB2DD0C119D2A35D89647854A588AAF74",
-    "sin_status": "VALIDA",
-    "felData": { ... }
-  }
-}
-```
+**Ejemplo de respuesta** (se omite por brevedad; incluye `cuf`, `sin_status`, `felData` completo, etc.).
 
 ---
 
@@ -261,11 +297,11 @@ Permite generar un código QR asociado a una prefactura. Al pagar el QR, la pref
 
 **Campos**
 
-| Campo    | Descripción                                      |
-|----------|--------------------------------------------------|
-| `ids`    | Lista de identificadores de prefacturas          |
-| `action` | `bulk_generate_qr`                               |
-| `publish`| Siempre `false`                                  |
+| Campo    | Descripción                                              |
+|----------|----------------------------------------------------------|
+| `ids`    | Lista de identificadores de prefacturas para facturar   |
+| `action` | `bulk_generate_qr`                                       |
+| `publish`| Siempre `false`                                          |
 
 **Ejemplo de envío**
 
@@ -283,7 +319,7 @@ Permite generar un código QR asociado a una prefactura. Al pagar el QR, la pref
 {
   "message": "QR enviado a terminal",
   "qr_id": 60790061,
-  "qr_url": "https://emizor-felapp.s3.amazonaws.com/..."
+  "qr_url": "https://emizor-felapp.s3.amazonaws.com/Qr-Image/2026-03-25/QR-Pago-Devicee5531f36-cc04-474a-a8df-d5a736a64f89.jpg"
 }
 ```
 
@@ -303,7 +339,7 @@ Convierte una prefactura en factura emitida.
 }
 ```
 
-**Respuesta**
+**Respuesta (ejemplo)**
 
 ```json
 {
@@ -334,7 +370,7 @@ Verifica el estado de una factura (útil para facturas emitidas fuera de línea)
 {
   "codigoEstado": 690,
   "estado": "VALIDA",
-  "errores": "[{\"code\":2005,\"warning\":true,...}]"
+  "errores": "[{\"code\":2005,\"warning\":true,\"index_file\":null,\"description\":\"ADVERTENCIA: EL NIT DEL CLIENTE ENVIADO EN EL CAMPO NUMERO DE DOCUMENTO NO ES VALIDO Nit enviado 2342342 para codigo excepcion 1\"}]"
 }
 ```
 
@@ -354,13 +390,26 @@ Obtiene el catálogo de productos disponibles.
     {
       "id": "ELe30l9a69",
       "product_key": "Capital",
+      "notes": "",
+      "price": 1,
+      "quantity": 1,
+      "created_at": 1753199529,
+      "updated_at": 1753199529,
+      "archived_at": 0,
+      "is_deleted": false,
       "felData": {
         "codigo_actividad_economica": "620901",
-        "codigo_producto_sin": "99100"
+        "codigo": "cap",
+        "codigo_producto": "pro-01",
+        "codigo_producto_sin": "99100",
+        "codigo_unidad": "58",
+        "nombre_unidad": "UNIDAD (SERVICIOS)"
       }
     }
   ],
-  "meta": { ... }
+  "meta": {
+    "pagination": { ... }
+  }
 }
 ```
 
@@ -381,16 +430,18 @@ Obtiene el catálogo de productos disponibles.
 3. Crear prefactura (`/api/v1/invoices?should_emit=false`)
 4. Generar QR (`/api/v1/invoices/bulk`)
 
+(Opcional) Consultar estado o emitir manualmente cuando el QR es pagado.
+
 ---
 
 ## Códigos de Estado Comunes
 
-| Código | Descripción                              |
-|--------|------------------------------------------|
-| 200    | Petición exitosa                         |
+| Código | Descripción                          |
+|--------|--------------------------------------|
+| 200    | Petición exitosa                     |
 | 400    | Error en la solicitud (formato, validación) |
-| 422    | Datos inválidos                          |
-| 500    | Error interno del servidor               |
+| 422    | Datos inválidos                      |
+| 500    | Error interno del servidor           |
 
 ---
 
@@ -400,11 +451,137 @@ Obtiene el catálogo de productos disponibles.
 - Los campos `extras` pueden usarse para enviar información adicional en la factura.
 - El campo `complemento` es requerido para documentos de identidad duplicados (ej. "A3").
 - En métodos de pago mixtos (`86`), el campo `montoGiftCard` se resta del `montoTotalSujetoIva`.
-- En métodos de pago que incluyan **Tarjeta** o **GiftCard**, los campos `numeroTarjeta` y `montoGiftCard` son obligatorios.
+- En métodos de pago que tengan en su descripción **Tarjeta** o **GiftCard**, el envío de los campos `numeroTarjeta` y `montoGiftCard` son requeridos.
 
 ---
 
-**Base URL de desarrollo:** `https://{your-env}.emizor.com`
+### 8. Crear Productos
 
-**Versión de la documentación:** 1.0 (24/02/2025)
+**POST** `/api/v1/products`
+
+**Request**
+
+```json
+{
+  "product_key": "Minerva",
+  "notes": "Taladros",
+  "price": "440",
+  "felData": {
+    "codigo_unidad": "57",
+    "nombre_unidad": "UNIDAD (BIENES)",
+    "codigo_actividad_economica": "620901",
+    "codigo_producto_sin": "83151",
+    "codigo": "Fa-052347",
+    "codigo_producto": "Fa-052347"
+  }
+}
 ```
+
+**Respuesta**
+
+```json
+{
+  "data": {
+    "id": "3YaOoMEaxq",
+    "user_id": "k8mepPpeMy",
+    "product_key": "Minerva",
+    "notes": "Taladros",
+    "price": 440,
+    "created_at": 1776715686,
+    "updated_at": 1776715686,
+    "archived_at": 0,
+    "is_deleted": false,
+    "felData": { ... }
+  }
+}
+```
+
+---
+
+### 9. Actualizar Productos
+
+**PUT** `/api/v1/products/:id`
+
+**Request** (similar al de creación, con los campos actualizados).
+
+**Respuesta** (objeto actualizado).
+
+---
+
+### 10. Eliminar Productos
+
+**DELETE** `/api/v1/products/:id`
+
+Eliminación soft del producto.
+
+**Respuesta** (objeto con `is_deleted: true` o similar).
+
+---
+
+### 11. Listar Paramétricas
+
+**GET** `/api/v1/clientfel/parametricas/:parametrica`
+
+**Parámetros posibles:**
+
+- `actividades`
+- `productos-sin`
+- `unidades`
+- `metodos-de-pago`
+- `tipos-documento-de-identidad`
+
+**Ejemplo**
+
+```http
+GET https://{app}.emizor.com/api/v1/clientfel/parametricas/tipos-documento-de-identidad
+```
+
+**Respuesta (ejemplo - tipos de documento)**
+
+```json
+{
+  "success": false,
+  "data": [
+    {
+      "id": 2,
+      "codigo": "2",
+      "descripcion": "CEX - CÉDULA DE IDENTIDAD DE EXTRANJERO",
+      "created_at": null,
+      "updated_at": "2021-12-01T16:59:07.000000Z"
+    },
+    {
+      "id": 1,
+      "codigo": "1",
+      "descripcion": "CI - CÉDULA DE IDENTIDAD",
+      "created_at": null,
+      "updated_at": "2021-12-01T16:59:07.000000Z"
+    },
+    {
+      "id": 5,
+      "codigo": "5",
+      "descripcion": "NIT - NÚMERO DE IDENTIFICACIÓN TRIBUTARIA",
+      "created_at": null,
+      "updated_at": "2021-12-01T16:59:07.000000Z"
+    },
+    {
+      "id": 4,
+      "codigo": "4",
+      "descripcion": "OD - OTRO DOCUMENTO DE IDENTIDAD",
+      "created_at": null,
+      "updated_at": "2021-12-01T16:59:07.000000Z"
+    },
+    {
+      "id": 3,
+      "codigo": "3",
+      "descripcion": "PAS - PASAPORTE",
+      "created_at": null,
+      "updated_at": "2021-12-01T16:59:07.000000Z"
+    }
+  ]
+}
+```
+
+---
+
+**Fin de la documentación.**  
+Versión 1.2 – 24/02/2025

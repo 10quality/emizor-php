@@ -48,6 +48,37 @@ $products = $emizor->products()->list(1, '');
 $productId = $products['data'][0]['id'] ?? 'replace-with-real-product-id';
 $productKey = $products['data'][0]['product_key'] ?? 'SERVICE';
 
+$createdProduct = $emizor->products()->create([
+    'product_key' => 'Minerva',
+    'notes' => 'Taladros',
+    'price' => '440',
+    'felData' => [
+        'codigo_unidad' => '57',
+        'nombre_unidad' => 'UNIDAD (BIENES)',
+        'codigo_actividad_economica' => '620901',
+        'codigo_producto_sin' => '83151',
+        'codigo' => 'Fa-052347',
+        'codigo_producto' => 'Fa-052347',
+    ],
+]);
+
+$updatedProduct = $emizor->products()->update($productId, [
+    'product_key' => 'Minerva Plus',
+    'notes' => 'Taladros actualizados',
+    'price' => '450',
+    'felData' => [
+        'codigo_unidad' => '57',
+        'nombre_unidad' => 'UNIDAD (BIENES)',
+        'codigo_actividad_economica' => '620901',
+        'codigo_producto_sin' => '83151',
+        'codigo' => 'Fa-052347',
+        'codigo_producto' => 'Fa-052347',
+    ],
+]);
+
+$deletedProduct = $emizor->products()->delete($productId);
+$identityDocumentTypes = $emizor->parametricas()->list('tipos-documento-de-identidad');
+
 $invoicePayload = [
     'client_id' => $client['data']['id'] ?? 'replace-with-real-client-id',
     'line_items' => [
@@ -89,6 +120,10 @@ print_r([
     'verify_nit' => $nitVerification,
     'client' => $client,
     'products' => $products,
+    'created_product' => $createdProduct,
+    'updated_product' => $updatedProduct,
+    'deleted_product' => $deletedProduct,
+    'parametricas_identity_document_types' => $identityDocumentTypes,
     'invoice' => $invoice,
     'prefactura' => $prefactura,
     'qr' => $qr,

@@ -49,6 +49,25 @@ final class GuzzleTransport implements TransportInterface
     }
 
     /**
+     * @param array<string, mixed> $payload
+     * @param array<string, mixed> $query
+     * @return array<string, mixed>
+     */
+    public function put(string $uri, array $payload = [], array $query = []): array
+    {
+        return $this->request('PUT', $uri, $payload, $query);
+    }
+
+    /**
+     * @param array<string, mixed> $query
+     * @return array<string, mixed>
+     */
+    public function delete(string $uri, array $query = []): array
+    {
+        return $this->request('DELETE', $uri, [], $query);
+    }
+
+    /**
      * Sends the request and normalizes the JSON response.
      *
      * @param array<string, mixed> $payload

@@ -150,6 +150,70 @@ Endpoint: `GET /api/v1/products?page=1&filter=`
 $products = $emizor->products()->list(1, '');
 ```
 
+## 9. Create Product
+
+Endpoint: `POST /api/v1/products`
+
+```php
+$product = $emizor->products()->create([
+    'product_key' => 'Minerva',
+    'notes' => 'Taladros',
+    'price' => '440',
+    'felData' => [
+        'codigo_unidad' => '57',
+        'nombre_unidad' => 'UNIDAD (BIENES)',
+        'codigo_actividad_economica' => '620901',
+        'codigo_producto_sin' => '83151',
+        'codigo' => 'Fa-052347',
+        'codigo_producto' => 'Fa-052347',
+    ],
+]);
+```
+
+## 10. Update Product
+
+Endpoint: `PUT /api/v1/products/{id}`
+
+```php
+$updatedProduct = $emizor->products()->update('replace-with-product-id', [
+    'product_key' => 'Minerva Plus',
+    'notes' => 'Taladros actualizados',
+    'price' => '450',
+    'felData' => [
+        'codigo_unidad' => '57',
+        'nombre_unidad' => 'UNIDAD (BIENES)',
+        'codigo_actividad_economica' => '620901',
+        'codigo_producto_sin' => '83151',
+        'codigo' => 'Fa-052347',
+        'codigo_producto' => 'Fa-052347',
+    ],
+]);
+```
+
+## 11. Delete Product
+
+Endpoint: `DELETE /api/v1/products/{id}`
+
+```php
+$deletedProduct = $emizor->products()->delete('replace-with-product-id');
+```
+
+## 12. List Parametricas
+
+Endpoint: `GET /api/v1/clientfel/parametricas/{parametrica}`
+
+Supported examples from the Emizor documentation:
+
+* `actividades`
+* `productos-sin`
+* `unidades`
+* `metodos-de-pago`
+* `tipos-documento-de-identidad`
+
+```php
+$identityDocumentTypes = $emizor->parametricas()->list('tipos-documento-de-identidad');
+```
+
 ## Samples
 
 * [docs/samples/basic-usage.php](samples/basic-usage.php)

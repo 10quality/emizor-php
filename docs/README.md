@@ -10,7 +10,7 @@ This SDK requires PHP `^8.2`.
 
 * Guzzle-based HTTP transport.
 * Environment-aware configuration via `.env`.
-* Dedicated resources for clients, invoices, products, and tax verification flows.
+* Dedicated resources for clients, invoices, products, parametric catalogs, and tax verification flows.
 * Enum support for documented constant values.
 * PHPUnit test suite with full source coverage.
 * PHPStan static analysis for code quality checks.
@@ -32,7 +32,7 @@ composer install
 Create a `.env` file in your project root:
 
 ```dotenv
-EMIZOR_BASE_URL=https://{your-env}}.emizor.com
+EMIZOR_BASE_URL=https://{your-env}.emizor.com
 EMIZOR_API_TOKEN=your-api-token
 EMIZOR_API_SECRET=password
 ```
@@ -72,6 +72,10 @@ The SDK sends the headers required by the official Emizor API documentation:
 * `invoices()->emitPrefactura(string $originId)`
 * `invoices()->status(string $originId)`
 * `products()->list(int $page = 1, string $filter = '')`
+* `products()->create(array $payload)`
+* `products()->update(string $productId, array $payload)`
+* `products()->delete(string $productId)`
+* `parametricas()->list(string $parametrica)`
 
 ## Documented Enums
 
@@ -104,6 +108,10 @@ The SDK documentation and samples cover every endpoint described in the bundled 
 * Emit prefactura
 * Check invoice status
 * List products
+* Create products
+* Update products
+* Delete products
+* List parametricas
 
 See [docs/endpoints.md](endpoints.md) for endpoint-by-endpoint payload guidance and examples.
 

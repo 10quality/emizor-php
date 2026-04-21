@@ -25,4 +25,21 @@ interface TransportInterface
      * @return array<string, mixed>
      */
     public function post(string $uri, array $payload = [], array $query = []): array;
+
+    /**
+     * Sends a PUT request to the Emizor API.
+     *
+     * @param array<string, mixed> $payload
+     * @param array<string, mixed> $query
+     * @return array<string, mixed>
+     */
+    public function put(string $uri, array $payload = [], array $query = []): array;
+
+    /**
+     * Sends a DELETE request to the Emizor API.
+     *
+     * @param array<string, mixed> $query
+     * @return array<string, mixed>
+     */
+    public function delete(string $uri, array $query = []): array;
 }

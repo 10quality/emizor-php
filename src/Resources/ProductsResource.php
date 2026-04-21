@@ -28,4 +28,36 @@ final readonly class ProductsResource
             'filter' => $filter,
         ]);
     }
+
+    /**
+     * Creates a product in Emizor.
+     *
+     * @param array<string, mixed> $payload
+     * @return array<string, mixed>
+     */
+    public function create(array $payload): array
+    {
+        return $this->transport->post('/api/v1/products', $payload);
+    }
+
+    /**
+     * Updates a product in Emizor.
+     *
+     * @param array<string, mixed> $payload
+     * @return array<string, mixed>
+     */
+    public function update(string $productId, array $payload): array
+    {
+        return $this->transport->put(sprintf('/api/v1/products/%s', rawurlencode($productId)), $payload);
+    }
+
+    /**
+     * Deletes a product in Emizor.
+     *
+     * @return array<string, mixed>
+     */
+    public function delete(string $productId): array
+    {
+        return $this->transport->delete(sprintf('/api/v1/products/%s', rawurlencode($productId)));
+    }
 }

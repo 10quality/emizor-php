@@ -8,6 +8,7 @@ use Emizor\Contracts\TransportInterface;
 use Emizor\Http\GuzzleTransport;
 use Emizor\Resources\ClientsResource;
 use Emizor\Resources\InvoicesResource;
+use Emizor\Resources\ParametricasResource;
 use Emizor\Resources\ProductsResource;
 
 /**
@@ -17,6 +18,7 @@ final class Emizor
 {
     private readonly ClientsResource $clients;
     private readonly InvoicesResource $invoices;
+    private readonly ParametricasResource $parametricas;
     private readonly ProductsResource $products;
 
     public function __construct(
@@ -24,6 +26,7 @@ final class Emizor
     ) {
         $this->clients = new ClientsResource($this->transport);
         $this->invoices = new InvoicesResource($this->transport);
+        $this->parametricas = new ParametricasResource($this->transport);
         $this->products = new ProductsResource($this->transport);
     }
 
@@ -75,5 +78,13 @@ final class Emizor
     public function products(): ProductsResource
     {
         return $this->products;
+    }
+
+    /**
+     * Returns the parametricas resource.
+     */
+    public function parametricas(): ParametricasResource
+    {
+        return $this->parametricas;
     }
 }
