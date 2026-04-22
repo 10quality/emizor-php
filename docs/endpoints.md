@@ -108,6 +108,8 @@ $invoice = $emizor->invoices()->create([
 ], new InvoiceOptions(true, false, true));
 ```
 
+`PaymentMethod` now exposes the expanded Emizor catalog. For example, code `86` remains available as `PaymentMethod::MIXED`.
+
 ## 4. Create Prefactura
 
 The same endpoint is used with `should_emit=false`.

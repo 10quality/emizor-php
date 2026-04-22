@@ -96,6 +96,16 @@ The SDK includes enum classes for values explicitly documented by Emizor:
 | `4` | `DocumentType::OD` | Otro documento de identidad |
 | `5` | `DocumentType::NIT` | Numero de identificacion tributaria |
 
+### Payment Method Values
+
+`PaymentMethod` now mirrors the current Emizor payment method catalog, while preserving the package naming convention such as `PaymentMethod::MIXED` for code `86`.
+
+When you need the official labels or want to sync UI choices dynamically, use the parametric catalog endpoint:
+
+```php
+$paymentMethods = $emizor->parametricas()->list('metodos-de-pago');
+```
+
 ## Endpoint Coverage
 
 The SDK documentation and samples cover every endpoint described in the bundled Emizor 5 API reference:
